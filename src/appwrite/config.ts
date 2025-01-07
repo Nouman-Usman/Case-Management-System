@@ -19,7 +19,6 @@ appwriteClient.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 export const account = new Account(appwriteClient)
 
 export class AppwriteService {
-    //create a new record of user inside appwrite
     async createUserAccount({email, password, name}: CreateUserAccount) {
         try {
             const userAccount = await account.create(ID.unique(), email, password, name)
@@ -30,11 +29,8 @@ export class AppwriteService {
             }    
         } catch (error:any) {
             throw error
-        }
-
-    
+        }    
     }
-
     async login( { email, password }: LoginUserAccount) {
        try {
             return await account.createEmailSession(email, password)
@@ -42,7 +38,6 @@ export class AppwriteService {
          throw error
        }
     }
-
     async isLoggedIn(): Promise<boolean> {
         try {
             const data = await this.getCurrentUser();
@@ -62,7 +57,6 @@ export class AppwriteService {
 
         return null
     }
-
     async logout() {
         try {
             return await account.deleteSession("current")

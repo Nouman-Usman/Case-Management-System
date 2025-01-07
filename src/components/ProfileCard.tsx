@@ -4,7 +4,7 @@ import { Models } from "appwrite";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Avatar from "./Avatar";
-
+import { toast } from "react-hot-toast";
 
 const ProfileCard= () => {
     const [user, setUser] = useState<Models.User<Models.Preferences> | null>(null);
@@ -13,7 +13,10 @@ const ProfileCard= () => {
         (async () => {
             const userData = await appwriteService.getCurrentUser()
             if (userData) {
-                setUser(userData)
+                setUser(userData);
+                toast.success("User data fetched successfully!");
+            } else {
+                toast.error("Failed to fetch user data.");
             }
         })()
     }, [])
@@ -29,13 +32,13 @@ const ProfileCard= () => {
                         <div className="relative">
                             <p className="font-bold text-xl w-full mb-1">{user.name}</p>
                             <div className="text-[12px] p-0.5 inline-block rounded-md bg-gradient-to-tr from-primary to-secondary">
-                                <button className="px-2 rounded-md font-bold bg-white">FREE</button>
+                                <button className="px-2 rounded-md font-bold bg-white text-black">Ok</button>
                             </div>
                         </div>
                     </div>
                     <div className="bg-gray-200/70 rounded-xl px-8 py-8 w-full flex gap-y-4 flex-wrap">
                         <div className="relative w-full">
-                            <p className="text-sm text-gray-700">Display Name</p>
+                            <p className="text-sm text-gray-700">Name</p>
                             <p className="font-semibold">{user.name}</p>
                         </div>
                         <div className="relative w-full">

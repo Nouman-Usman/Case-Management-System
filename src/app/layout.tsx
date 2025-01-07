@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Create next and appwrite app',
-  description: 'learning it on youtube',
+  title: 'Apna Waqeel ⚖️ Your Ultimate Case Management',
+  description: 'Take your Case Management to the next level with Apna Waqeel. Manage your cases, clients, and documents with ease. Get started today!',
 }
 
 export default function RootLayout({
