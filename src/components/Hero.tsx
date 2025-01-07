@@ -10,6 +10,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
+import Image from 'next/image';
 import useAuth from "@/context/useAuth";
 import ProfileCard from "./ProfileCard";
 import Login from "./Login";
@@ -64,7 +65,7 @@ export default function HeroFormSignUpForm() {
                                 <footer className="mt-3">
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0">
-                                            <img
+                                            <Image
                                                 className="h-8 w-8 rounded-full"
                                                 src="https://placehold.co/100x100"
                                                 alt="Image Description"

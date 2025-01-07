@@ -4,6 +4,7 @@ import useAuth from "@/context/useAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {FormEvent, useState} from "react";
+import Image from "next/image";
 
 const Login = () => {
     const router = useRouter()
@@ -34,7 +35,7 @@ const Login = () => {
             <div className={`mx-auto w-full max-w-lg  rounded-xl p-10`}>
                 <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[60px]">
-                        <img src="/favicon.ico" alt="Logo" />
+                        <Image  src="/favicon.ico" alt="Logo" />
                     </span>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight text-black">
