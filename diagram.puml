@@ -1,0 +1,69 @@
+@startuml diagram_name
+actor Client
+actor Lawyer
+actor Chamber
+actor Admin
+
+state "User Interaction" as UI {
+  [*] --> SigningUp
+  SigningUp --> SelectingRole : Select Role (Client, Lawyer, Chamber, Admin)
+  SelectingRole --> VerifyingCredentials : Submit Credentials
+  VerifyingCredentials --> LoggedIn : Verified
+  VerifyingCredentials --> SigningUp : Invalid Credentials
+
+  LoggedIn --> SearchingAssistance : Search Legal Assistance
+  SearchingAssistance --> QueryAnalyzed : Sentiment Analysis
+  QueryAnalyzed --> ProvidingInformation : Results Retrieved
+  ProvidingInformation --> [*]
+}
+
+state "Lawyer Interaction" as LI {
+  [*] --> ReceivingDetails
+  ReceivingDetails --> ReviewingCase : Review Client Details
+  ReviewingCase --> AcceptingCase : Accept
+  ReviewingCase --> DecliningCase : Decline
+  AcceptingCase --> [*]
+  DecliningCase --> [*]
+}
+
+state "Case Management" as CM {
+  [*] --> CaseRequested
+  CaseRequested --> AssigningManager : Assign Request
+  AssigningManager --> ConfirmingAssignment : Confirm Assignment
+  ConfirmingAssignment --> ManagerAssigned : Notify Client
+  ManagerAssigned --> [*]
+}
+
+state "Appointment Management" as AM {
+  [*] --> BookingAppointment
+  BookingAppointment --> SchedulingMeeting : Request Meeting
+  SchedulingMeeting --> BookingConfirmed : Confirm Schedule
+  BookingConfirmed --> NotifyingParties : Send Notifications
+  NotifyingParties --> [*]
+}
+
+state "System Services" as SS {
+  [*] --> LegalAnalysis
+  LegalAnalysis --> ChatbotInteraction : Provide Insights
+  ChatbotInteraction --> CaseHandling : Forward to Case Management
+  CaseHandling --> SendingNotifications : Trigger Notifications
+  SendingNotifications --> EnsuringSecurity : Data Protection
+  EnsuringSecurity --> [*]
+}
+
+Client --> UI : Sign Up/Login
+UI --> LI : Recommend Lawyer
+UI --> CM : Case Management Requested
+UI --> AM : Appointment Booking
+
+SS --> UI : Provide Information
+SS --> LI : Notify Lawyer
+SS --> CM : Assign Manager
+SS --> AM : Confirm Appointment
+
+Admin --> CM : Assign Case Manager
+Admin --> AM : Manage Scheduling
+Chamber --> LI : Manage Lawyer Profiles
+Chamber --> CM : Manage Subscriptions
+
+@enduml
