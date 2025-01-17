@@ -4,7 +4,7 @@ import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 import { AuthProvider } from "@/context/authContext";
 import React, { useEffect, useState } from "react";
-
+// import { Header1 } from "@/components/ui/header"
 const ProtectedLayout = ({
     children,
   }: {
@@ -43,7 +43,9 @@ const ProtectedLayout = ({
                             <Blog blur />
                         </div>
                     </div>
-                    <Header />
+                    <div className="block">
+      <Header />
+    </div>
                     <main className="px-2 py-4">{children}</main>
                 </>
             )}
