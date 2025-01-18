@@ -33,6 +33,19 @@ const Signup = () => {
     }
   };
 
+  const signUpWithGoogle = async () => {
+    try {
+      const { user, session, error } = await authService.signInWithGoogle();
+      if (error) throw error;
+      if (user) {
+        setAuthStatus(true);
+        router.push("/profile");
+      }
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center">
       <div className={`mx-auto w-full max-w-lg bg-gray-200/50 rounded-xl p-10`}>
@@ -121,6 +134,15 @@ const Signup = () => {
                 className="inline-flex w-full items-center justify-center rounded-md bg-primary px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-primary/80"
               >
                 Create Account
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={signUpWithGoogle}
+                className="inline-flex w-full items-center justify-center rounded-md bg-red-500 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-red-600"
+              >
+                Sign Up with Google
               </button>
             </div>
           </div>

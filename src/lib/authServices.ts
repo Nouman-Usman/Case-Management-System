@@ -39,6 +39,14 @@ export class AuthService {
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
     }
+
+    async signInWithGoogle() {
+        const { user, session, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+        });
+        if (error) throw error;
+        return { user, session };
+    }
 }
 
 const authService = new AuthService();
