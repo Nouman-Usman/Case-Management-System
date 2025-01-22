@@ -1,5 +1,5 @@
 "use client";
-import appwriteService from "@/appwrite/config";
+import {appwriteService} from "@/appwrite/config";
 import { Models } from "appwrite";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

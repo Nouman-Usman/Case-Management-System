@@ -1,5 +1,5 @@
 "use client";
-import appwriteService from "@/appwrite/config";
+import {appwriteService} from "@/appwrite/config";
 import useAuth from "@/context/useAuth";
 import { useRouter } from "next/navigation";
 import React, {useEffect} from "react";
