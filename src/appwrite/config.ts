@@ -1,5 +1,5 @@
 import conf from "@/conf/config";
-import {Client, Account, ID, OAuthProvider} from 'appwrite'
+import {Client, Account, ID, OAuthProvider, Databases} from 'appwrite'
 
 type CreateUserAccount = {
     email: string,
@@ -66,7 +66,7 @@ export class AppwriteService {
 
     
 }
-
+const database = new Databases(appwriteClient)
 const appwriteService = new AppwriteService()
 
-export default appwriteService
+export  {appwriteService, database}

@@ -1,11 +1,9 @@
 "use client";
-import appwriteService from "@/appwrite/config";
+import {appwriteService} from "@/appwrite/config";
 import Blog from "@/components/Blog";
 import Header from "@/components/Header";
 import { AuthProvider } from "@/context/authContext";
 import React, { useEffect, useState } from "react";
-// import authService from "@/lib/authServices";
-// console.log("AuthService:", authService);
 // import { Header1 } from "@/components/ui/header"
 const ProtectedLayout = ({
     children,
