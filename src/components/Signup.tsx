@@ -18,31 +18,11 @@ const Signup = () => {
 
   const create = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const userData = await authService.createUserAccount({
-        email: formData.email,
-        password: formData.password,
-        name: formData.name, // Add fullName to the form data
-      });
-      if (userData) {
-        setAuthStatus(true);
-        router.push("/profile");
-      }
-    } catch (error: any) {
-      setError(error.message);
-    }
+    
   };
 
   const signUpWithGoogle = async () => {
-    try {
-      const { user, session } = await authService.signInWithGoogle();
-      if (user) {
-        setAuthStatus(true);
-        router.push("/profile");
-      }
-    } catch (error: any) {
-      setError(error.message);
-    }
+    
   };
 
   return (
