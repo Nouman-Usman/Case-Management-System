@@ -11,6 +11,7 @@ const Signup = () => {
     email: "",
     password: "",
     name: "",
+    fullName: "",
   });
   const [error, setError] = useState("");
 
@@ -22,7 +23,7 @@ const Signup = () => {
       const userData = await authService.createUserAccount({
         email: formData.email,
         password: formData.password,
-        fullName: formData.name, // Add fullName to the form data
+        name: formData.name, // Add fullName to the form data
       });
       if (userData) {
         setAuthStatus(true);
@@ -35,8 +36,7 @@ const Signup = () => {
 
   const signUpWithGoogle = async () => {
     try {
-      const { user, session, error } = await authService.signInWithGoogle();
-      if (error) throw error;
+      const { user, session } = await authService.signInWithGoogle();
       if (user) {
         setAuthStatus(true);
         router.push("/profile");

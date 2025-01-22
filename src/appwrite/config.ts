@@ -1,5 +1,5 @@
 import conf from "@/conf/config";
-import {Client, Account, ID} from 'appwrite'
+import {Client, Account, ID, OAuthProvider} from 'appwrite'
 
 type CreateUserAccount = {
     email: string,
@@ -17,7 +17,6 @@ const appwriteClient = new Client()
 appwriteClient.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 
 export const account = new Account(appwriteClient)
-
 export class AppwriteService {
     async createUserAccount({email, password, name}: CreateUserAccount) {
         try {
@@ -33,7 +32,7 @@ export class AppwriteService {
     }
     async login( { email, password }: LoginUserAccount) {
        try {
-            return await account.createEmailSession(email, password)
+            return await account.createSession(email, password)
        } catch (error:any) {
          throw error
        }

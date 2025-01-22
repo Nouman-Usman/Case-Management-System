@@ -10,8 +10,6 @@ datasource db {
   schemas   = ["auth", "public"]
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model audit_log_entries {
   instance_id String?   @db.Uuid
   id          String    @id @db.Uuid
@@ -44,8 +42,6 @@ model flow_state {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model identities {
   provider_id     String
   user_id         String    @db.Uuid
@@ -54,7 +50,7 @@ model identities {
   last_sign_in_at DateTime? @db.Timestamptz(6)
   created_at      DateTime? @db.Timestamptz(6)
   updated_at      DateTime? @db.Timestamptz(6)
-  email           String?   // Remove default expression
+  email           String?
   id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   users           users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
@@ -64,8 +60,6 @@ model identities {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model instances {
   id              String    @id @db.Uuid
   uuid            String?   @db.Uuid
@@ -76,8 +70,6 @@ model instances {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model mfa_amr_claims {
   session_id            String   @db.Uuid
   created_at            DateTime @db.Timestamptz(6)
@@ -90,8 +82,6 @@ model mfa_amr_claims {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model mfa_challenges {
   id                     String      @id @db.Uuid
   factor_id              String      @db.Uuid
@@ -106,8 +96,6 @@ model mfa_challenges {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model mfa_factors {
   id                   String           @id @db.Uuid
   user_id              String           @db.Uuid
@@ -130,8 +118,6 @@ model mfa_factors {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model one_time_tokens {
   id         String              @id @db.Uuid
   user_id    String              @db.Uuid
@@ -148,8 +134,6 @@ model one_time_tokens {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model refresh_tokens {
   instance_id String?   @db.Uuid
   id          BigInt    @id @default(autoincrement())
@@ -170,9 +154,6 @@ model refresh_tokens {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model saml_providers {
   id                String        @id @db.Uuid
   sso_provider_id   String        @db.Uuid
@@ -189,9 +170,6 @@ model saml_providers {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model saml_relay_states {
   id              String        @id @db.Uuid
   sso_provider_id String        @db.Uuid
@@ -210,16 +188,12 @@ model saml_relay_states {
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model schema_migrations {
   version String @id @db.VarChar(255)
 
   @@schema("auth")
 }
 
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model sessions {
   id             String           @id @db.Uuid
   user_id        String           @db.Uuid
@@ -242,10 +216,6 @@ model sessions {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model sso_domains {
   id              String        @id @db.Uuid
   sso_provider_id String        @db.Uuid
@@ -258,10 +228,6 @@ model sso_domains {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model sso_providers {
   id                String              @id @db.Uuid
   resource_id       String?
@@ -274,10 +240,6 @@ model sso_providers {
   @@schema("auth")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
-/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model users {
   instance_id                 String?           @db.Uuid
   id                          String            @id @db.Uuid
@@ -305,7 +267,7 @@ model users {
   phone_change                String?           @default("")
   phone_change_token          String?           @default("") @db.VarChar(255)
   phone_change_sent_at        DateTime?         @db.Timestamptz(6)
-  confirmed_at                DateTime?         @db.Timestamptz(6) // Remove default expression
+  confirmed_at                DateTime?         @db.Timestamptz(6)
   email_change_token_current  String?           @default("") @db.VarChar(255)
   email_change_confirm_status Int?              @default(0) @db.SmallInt
   banned_until                DateTime?         @db.Timestamptz(6)
@@ -325,7 +287,6 @@ model users {
   @@schema("auth")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model ai_suggestions {
   id              String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   case_id         String?   @db.Uuid
@@ -338,7 +299,6 @@ model ai_suggestions {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model case_history {
   id                                          String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   case_id                                     String?   @db.Uuid
@@ -357,7 +317,6 @@ model case_history {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model cases {
   id                                          String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   chamber_id                                  String?          @db.Uuid
@@ -387,7 +346,6 @@ model cases {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model chamber_members {
   id           String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   chamber_id   String?   @db.Uuid
@@ -404,8 +362,6 @@ model chamber_members {
   @@schema("public")
 }
 
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model chambers {
   id              String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   profile_id      String?           @db.Uuid
@@ -427,7 +383,6 @@ model chambers {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model documents {
   id          String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   case_id     String?   @db.Uuid
@@ -456,7 +411,6 @@ model lawyer_expertise {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model notifications {
   id           String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   recipient_id String?           @db.Uuid
@@ -471,7 +425,6 @@ model notifications {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model payments {
   id              String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   chamber_id      String?         @db.Uuid
@@ -488,7 +441,6 @@ model payments {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model profiles {
   id                                              String             @id @db.Uuid
   full_name                                       String
@@ -497,10 +449,10 @@ model profiles {
   role                                            user_role
   created_at                                      DateTime?          @default(now()) @db.Timestamptz(6)
   updated_at                                      DateTime?          @default(now()) @db.Timestamptz(6)
-  location                                        String?            @map("location") // Add location field
-  cnic_number                                     String?            @map("cnic_number") // Add CNIC number field
-  profile_pic                                     String?            @map("profile_pic") // Add profile picture field
-  client_type                                     String?            @map("client_type") // Add client type field
+  location                                        String?
+  cnic_number                                     String?
+  profile_pic                                     String?
+  client_type                                     String?
   case_history_case_history_updated_byToprofiles  case_history[]     @relation("case_history_updated_byToprofiles")
   case_history_case_history_verified_byToprofiles case_history[]     @relation("case_history_verified_byToprofiles")
   cases_cases_assigned_lawyer_idToprofiles        cases[]            @relation("cases_assigned_lawyer_idToprofiles")
@@ -526,13 +478,12 @@ model specializations {
   @@schema("public")
 }
 
-/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model subscriptions {
   id          String               @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   chamber_id  String?              @db.Uuid
   plan_name   String
   status      subscription_status? @default(active)
-  start_date  DateTime             @default(now()) @db.Date // Correct default expression
+  start_date  DateTime             @default(now()) @db.Date
   end_date    DateTime             @db.Date
   price       Decimal              @db.Decimal(10, 2)
   max_lawyers Int
