@@ -69,4 +69,5 @@ export class AppwriteService {
 const database = new Databases(appwriteClient)
 const appwriteService = new AppwriteService()
 
-export  {appwriteService, database}
+export  {appwriteService, database, appwriteClient}
+

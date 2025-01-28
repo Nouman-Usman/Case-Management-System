@@ -10,6 +10,8 @@ import ContactForm from "@/components/Contact";
 import HeroFormSignUpForm from "@/components/Hero";
 import { PricingSectionDemo } from "@/components/price";
 import {ParticlesDemo} from "@/components/background";
+import getOrCreateDB from "@/models/server/dbSetup";
+import { get } from "node:https";
 const Home = () => {
 const {authStatus} = useAuth();
 return (

@@ -13,7 +13,6 @@ const ProtectedLayout = ({
 
     const [authStatus, setAuthStatus] = useState(false);
     const [loader, setLoader] = useState(true);
-
     useEffect(() => {
         appwriteService.isLoggedIn()
         .then(setAuthStatus)

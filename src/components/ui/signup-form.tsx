@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import conf from "@/conf/config";
 import { Client, Account, ID, OAuthProvider } from 'appwrite';
-import {appwriteService} from "@/appwrite/config";
+import appwriteService from "@/appwrite/config";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from 'react-hot-toast';
+import { v4 as uuidv4 } from 'uuid';
+
 const appwriteClient = new Client();
 appwriteClient.setEndpoint(conf.appwriteUrl).setProject(conf.appwriteProjectId);
 const account = new Account(appwriteClient);
 
 export function SignupForm() {
-  const not = (message: string) => toast.error(message);
   const [isLoading, setIsLoading] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const router = useRouter();
@@ -30,17 +30,17 @@ export function SignupForm() {
 
     setIsLoading(true);
     try {
+      const userId = uuidv4(); // Generate a valid UUID
+      console.log("User ID: ", userId);
       const userAccount = await appwriteService.createUserAccount({ email, password, name });
       console.log("User Account: ", userAccount);
       if (userAccount) {
-        toast.success("Signup successful");
         await account.createSession(email, password);
         router.push('/profile'); // Redirect to profile page on success
       }
     } catch (error: any) {
       console.error("Signup error:", error.message);
-      toast.error("Signup failed with following error: " , error.message);
-      // alert("Signup failed. Please try again.");
+      alert("Signup failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -97,7 +97,7 @@ export function SignupForm() {
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" name="email" placeholder="abc@gmail.com" type="email" />
+          <Input id="email" name="email" placeholder="xyz@gmail.com" type="email" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
